@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/", "destination": "/frontend/landing/index.html" },
+    { "source": "/login", "destination": "/frontend/auth-login/login.html" },
+    { "source": "/register", "destination": "/frontend/auth-register/register.html" },
+    { "source": "/dashboard", "destination": "/frontend/dashboard/dashboard.html" },
+    { "source": "/pos", "destination": "/frontend/pos/pos.html" },
+    { "source": "/inventory", "destination": "/frontend/inventory/inventory.html" },
+    { "source": "/sales", "destination": "/frontend/sales/sales.html" },
+    { "source": "/customers", "destination": "/frontend/customers/customers.html" },
+    { "source": "/reports", "destination": "/frontend/reports/reports.html" },
+    { "source": "/settings", "destination": "/frontend/settings/settings.html" },
+    { "source": "/(.*)", "destination": "/frontend/$1" }
+  ]
+}
