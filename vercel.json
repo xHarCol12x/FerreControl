@@ -1,6 +1,7 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "outputDirectory": ".",
   "rewrites": [
     { "source": "/", "destination": "/frontend/landing/index.html" },
     { "source": "/login", "destination": "/frontend/auth-login/login.html" },
