@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FerreControl - Login</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-container": "#1e3a8a",
+                    "surface": "#f8f9ff",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "primary-fixed-dim": "#b6c4ff",
+                    "inverse-primary": "#b6c4ff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary-fixed": "#ffdbca",
+                    "outline-variant": "#c5c5d3",
+                    "primary-fixed": "#dce1ff",
+                    "tertiary-container": "#6e2c00",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcb",
+                    "tertiary-fixed-dim": "#ffb691",
+                    "surface-container": "#e5eeff",
+                    "on-secondary-fixed-variant": "#783200",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "surface-dim": "#cbdbf5",
+                    "inverse-surface": "#213145",
+                    "on-tertiary-container": "#f39461",
+                    "on-secondary-fixed": "#341100",
+                    "on-primary": "#ffffff",
+                    "on-secondary-container": "#5c2400",
+                    "surface-tint": "#4059aa",
+                    "surface-bright": "#f8f9ff",
+                    "on-surface": "#0b1c30",
+                    "on-primary-fixed-variant": "#264191",
+                    "outline": "#757682",
+                    "tertiary": "#4b1c00",
+                    "secondary-fixed-dim": "#ffb690",
+                    "on-tertiary-fixed": "#341100",
+                    "primary": "#00236f",
+                    "background": "#f8f9ff",
+                    "on-primary-container": "#90a8ff",
+                    "secondary-container": "#fd761a",
+                    "secondary": "#9d4300",
+                    "on-surface-variant": "#444651",
+                    "error": "#ba1a1a",
+                    "on-background": "#0b1c30",
+                    "surface-container-highest": "#d3e4fe",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-fixed-variant": "#773205",
+                    "on-error": "#ffffff",
+                    "on-primary-fixed": "#00164e"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "table-row-height": "32px",
+                    "stack-gap-xs": "0.25rem",
+                    "unit": "4px",
+                    "gutter": "1rem",
+                    "stack-gap-sm": "0.5rem",
+                    "stack-gap-md": "1rem",
+                    "container-padding": "1.5rem"
+            },
+            "fontFamily": {
+                    "h2": [
+                            "Inter"
+                    ],
+                    "body-sm": [
+                            "Inter"
+                    ],
+                    "h3": [
+                            "Inter"
+                    ],
+                    "table-data": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-caps": [
+                            "Inter"
+                    ],
+                    "h1": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "h2": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-sm": [
+                            "13px",
+                            {
+                                    "lineHeight": "18px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h3": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "table-data": [
+                            "13px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-caps": [
+                            "11px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "h1": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+        },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex text-on-background selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- Split Screen Layout -->
+<div class="flex flex-1 w-full flex-col lg:flex-row">
+<!-- Left Side: Branding & Visuals (Hidden on smaller screens) -->
+<div class="relative hidden lg:flex flex-col w-5/12 bg-primary overflow-hidden border-r border-outline-variant">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="interior view of an organized industrial warehouse with high steel shelving and stacked cardboard boxes" class="w-full h-full object-cover opacity-30 mix-blend-luminosity" data-alt="interior view of an organized industrial warehouse with high steel shelving, stacked cardboard boxes, concrete floor, and cool artificial lighting overhead" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSmWD0zj4kPl9Cjqt4myKSvTwNR6ZdpQi9NGtx_4S7uljhFRD_x68_1YRPFxQHQQ6pVs4xwYeuqfPCYpzydHJR5jlgrVT43Nm5MOW4RB03mFYFiNGrIgK554nJQs96cIOnrKPqSIgrAb7S_vp2B_diYp2WwGLqYdzSaYgnSemg-KcfnuWE1N9R0piTgAOC24zztW_q6i_8cu3tT0OrWNxBvYjqr6ZtnycDMDx4Nn8iUBPA_BxitiM_vRUi_4BCZcV01OkzBJt24vCc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/40"></div>
+</div>
+<!-- Content -->
+<div class="relative z-10 flex flex-col justify-between h-full p-12">
+<div>
+<div class="flex items-center gap-3 text-on-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+<span class="font-h1 text-h1 tracking-tighter">FerreControl</span>
+</div>
+</div>
+<div class="max-w-md">
+<h2 class="font-h2 text-h2 text-on-primary mb-stack-gap-sm">Industrial Grade Precision.</h2>
+<p class="font-body-md text-body-md text-primary-fixed-dim">
+                        Advanced inventory management, real-time POS processing, and accurate revenue forecasting built for high-volume hardware environments.
+                    </p>
+<div class="mt-8 flex gap-4">
+<div class="flex items-center gap-2 bg-surface/10 px-3 py-1.5 rounded border border-surface/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-on-primary text-sm">inventory_2</span>
+<span class="font-label-caps text-label-caps text-on-primary">Stock Control</span>
+</div>
+<div class="flex items-center gap-2 bg-surface/10 px-3 py-1.5 rounded border border-surface/20 backdrop-blur-sm">
+<span class="material-symbols-outlined text-on-primary text-sm">point_of_sale</span>
+<span class="font-label-caps text-label-caps text-on-primary">Fast Checkout</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Login Form -->
+<div class="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:px-20 xl:px-24 bg-surface-container-lowest">
+<div class="mx-auto w-full max-w-sm lg:max-w-[400px]">
+<!-- Mobile Logo -->
+<div class="flex lg:hidden items-center gap-2 text-primary mb-8">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+<span class="font-h1 text-h1 tracking-tighter">FerreControl</span>
+</div>
+<div class="mb-8">
+<a href="../landing/index.html" class="inline-flex items-center gap-1 text-primary hover:underline text-sm mb-4">
+    <span class="material-symbols-outlined text-sm">arrow_back</span>
+    Volver al Inicio
+</a>
+<h1 class="font-h2 text-h2 text-on-surface">Iniciar Sesión</h1>
+<p class="mt-2 font-body-sm text-body-sm text-on-surface-variant">
+                        Ingresa tus credenciales para acceder al portal seguro.
+                    </p>
+</div>
+<!-- Form Section -->
+<form id="loginForm" class="space-y-stack-gap-md">
+<!-- Identifier Input (Email or RUC) -->
+<div>
+<label class="block font-label-caps text-label-caps text-on-surface-variant mb-stack-gap-xs" for="identifier">Usuario</label>
+<div class="relative rounded-md shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-outline-variant text-[18px]">person</span>
+</div>
+<input autocomplete="username" class="block w-full rounded-DEFAULT border-outline-variant bg-surface py-2 pl-10 pr-3 font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-outline transition-shadow h-[36px]" id="identifier" name="identifier" placeholder="Nombre de usuario" required="" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div>
+<div class="flex items-center justify-between mb-stack-gap-xs">
+<label class="block font-label-caps text-label-caps text-on-surface-variant" for="password">Contraseña</label>
+<a class="font-body-sm text-body-sm text-primary hover:text-primary-container hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded" href="#">¿Olvidaste tu clave?</a>
+</div>
+<div class="relative rounded-md shadow-sm">
+<div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+<span class="material-symbols-outlined text-outline-variant text-[18px]">lock</span>
+</div>
+<input autocomplete="current-password" class="block w-full rounded-DEFAULT border-outline-variant bg-surface py-2 pl-10 pr-3 font-body-md text-body-md text-on-surface focus:border-primary focus:ring-2 focus:ring-primary focus:outline-none placeholder:text-outline transition-shadow h-[36px]" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-stack-gap-sm">
+<button class="flex w-full justify-center items-center gap-2 rounded-DEFAULT bg-secondary px-4 py-2 font-body-md text-body-md font-medium text-on-secondary shadow-sm hover:bg-secondary-container hover:text-on-secondary-container focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-secondary transition-colors h-[40px]" type="submit">
+                            Ingresar al Sistema
+                            <span class="material-symbols-outlined text-[18px]">login</span>
+</button>
+</div>
+</form>
+
+<div class="mt-8 text-center text-sm text-on-surface-variant">
+    ¿No tienes una cuenta? 
+    <a href="../auth-register/register.html" class="text-primary font-bold hover:underline">Regístrate ahora</a>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button');
+    const username = document.getElementById('identifier').value;
+    const password = document.getElementById('password').value;
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">sync</span> Autenticando...';
+    
+    try {
+        const response = await fetch('/api/v1/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('username', data.username);
+            localStorage.setItem('tenantName', data.tenantName);
+            localStorage.setItem('role', data.role);
+            
+            window.location.href = '../dashboard/dashboard.html';
+        } else {
+            alert('Credenciales inválidas. Verifica tu usuario y contraseña.');
+            btn.disabled = false;
+            btn.innerHTML = 'Ingresar al Sistema <span class="material-symbols-outlined text-[18px]">login</span>';
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('No se pudo conectar con el servidor.');
+        btn.disabled = false;
+        btn.innerHTML = 'Ingresar al Sistema <span class="material-symbols-outlined text-[18px]">login</span>';
+    }
+});
+</script>
+<!-- Security Badge -->
+<div class="mt-8 flex items-center justify-center gap-2 border-t border-outline-variant/30 pt-6">
+<span class="material-symbols-outlined text-outline text-[16px]">encrypted</span>
+<span class="font-body-sm text-body-sm text-outline">Conexión encriptada de punto a punto</span>
+</div>
+</div>
+</div>
+</div>
+<script src="../global.js"></script></body></html>

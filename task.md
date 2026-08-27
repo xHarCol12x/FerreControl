@@ -1,0 +1,6 @@
+- [x] Backend: Add `imageUrl` to `Product` entity and DTO
+- [x] Backend: Implement `updateProduct` and `deleteProduct` in Service
+- [x] Backend: Implement `PUT` and `DELETE` in Controller
+- [x] Frontend: Update `inventory.html` with Action columns and Image field
+- [x] Frontend: Implement Edit/Delete logic in `inventory.js`
+- [x] Frontend: Update `pos.js` to show real product images

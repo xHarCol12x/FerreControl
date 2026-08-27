@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>FerreControl - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#dce9ff",
+                        "tertiary": "#4b1c00",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-background": "#0b1c30",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#264191",
+                        "on-secondary-fixed-variant": "#783200",
+                        "on-tertiary-fixed-variant": "#773205",
+                        "surface-container-low": "#eff4ff",
+                        "secondary": "#9d4300",
+                        "secondary-container": "#fd761a",
+                        "on-error": "#ffffff",
+                        "background": "#f8f9ff",
+                        "secondary-fixed": "#ffdbca",
+                        "surface-tint": "#4059aa",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "on-secondary-fixed": "#341100",
+                        "outline": "#757682",
+                        "tertiary-fixed-dim": "#ffb691",
+                        "secondary-fixed-dim": "#ffb690",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-surface-variant": "#444651",
+                        "inverse-primary": "#b6c4ff",
+                        "on-secondary-container": "#5c2400",
+                        "surface-variant": "#d3e4fe",
+                        "on-primary-fixed": "#00164e",
+                        "primary-container": "#1e3a8a",
+                        "inverse-surface": "#213145",
+                        "on-tertiary-container": "#f39461",
+                        "on-primary-container": "#90a8ff",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary-container": "#6e2c00",
+                        "on-surface": "#0b1c30",
+                        "outline-variant": "#c5c5d3",
+                        "on-tertiary-fixed": "#341100",
+                        "primary": "#00236f",
+                        "surface-bright": "#f8f9ff",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dce1ff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "surface": "#f8f9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1rem",
+                        "stack-gap-md": "1rem",
+                        "unit": "4px",
+                        "stack-gap-sm": "0.5rem",
+                        "stack-gap-xs": "0.25rem",
+                        "container-padding": "1.5rem",
+                        "table-row-height": "32px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "h3": ["Inter"],
+                        "body-md": ["Inter"],
+                        "table-data": ["Inter"],
+                        "h1": ["Inter"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h2": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "h3": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "table-data": ["13px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md text-body-md h-screen flex overflow-hidden">
+    <!-- SideNavBar -->
+    <nav
+        class="bg-slate-50 dark:bg-slate-950 font-sans text-xs uppercase tracking-wider font-semibold fixed left-0 top-0 h-full w-64 border-r border-r border-slate-200 dark:border-slate-800 flex flex-col h-full py-4 z-20">
+        <!-- Header Section -->
+        <div class="px-6 mb-8 flex flex-col items-start gap-stack-gap-sm">
+            <div class="flex items-center gap-2 w-full">
+                <img alt="Store Logo" class="w-10 h-10 rounded-full object-cover border border-outline-variant"
+                    data-alt="close up of a modern industrial hardware store logo on a clean white wall"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKsH_cKK9gO0W1npxc8MDWLzy1zsyIIp7WH2vLKHgPsCbYutxu0cePn4aK26YFFP1E7c5KrH6PeAVkHh0bj7Y0mQ9gfqmcoe2xXv55R1Zt05CCGAs4lykLvaYzFUAQHOH9utPTOsVFys4-2XkJxrYMcRGjIHGCmS8jPJJgs8JT_Maf4xhRRaqoJ6Sm1lR8g54MrKd-fGME8bPveJeJcVWqH_Mitc75V1GDK693ppV1NB8vAJypTfxjlZFLV7u48jHNY2nFaR9nhOkq" />
+                <div class="flex flex-col">
+                    <span class="text-on-background font-bold text-sm leading-tight capitalize">Ferretería
+                        Central</span>
+                    <span class="text-slate-500 text-[10px] lowercase">Tenant ID: 0822</span>
+                </div>
+            </div>
+            <!-- CTA Button -->
+            <button
+                class="w-full mt-4 bg-secondary-container hover:bg-secondary text-on-secondary py-2 px-4 rounded transition-colors duration-200 flex items-center justify-center gap-2 shadow-sm font-label-caps text-label-caps">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                Nueva Venta
+            </button>
+        </div>
+        <!-- Navigation Links -->
+        <div class="flex-1 overflow-y-auto w-full flex flex-col gap-1">
+            <!-- Active Tab: Dashboard -->
+            <a class="text-orange-600 dark:text-orange-400 border-r-4 border-orange-600 bg-orange-50 dark:bg-orange-900/20 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../dashboard/dashboard.html">
+                <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <!-- Inactive Tabs -->
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../pos/pos.html">
+                <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+                <span>Punto de Venta</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../sales/sales.html">
+                <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                <span>Ventas</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../inventory/inventory.html">
+                <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+                <span>Inventario</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../customers/customers.html">
+                <span class="material-symbols-outlined text-[20px]">group</span>
+                <span>Clientes</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../reports/reports.html">
+                <span class="material-symbols-outlined text-[20px]">analytics</span>
+                <span>Reportes</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../settings/settings.html">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span>Configuración</span>
+            </a>
+        </div>
+        <!-- Footer Links -->
+        <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800 w-full flex flex-col gap-1">
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../auth-login/login.html">
+                <span class="material-symbols-outlined text-[20px]">logout</span>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+    </nav>
+    <!-- Main Canvas -->
+    <main class="flex-1 ml-64 flex flex-col h-full bg-background relative z-10">
+        <!-- TopAppBar -->
+        <header
+            class="bg-white dark:bg-slate-900 font-sans text-sm font-medium docked full-width top-0 border-b border-b border-slate-200 dark:border-slate-800 flex justify-between items-center px-6 py-2 w-full shrink-0 h-[60px]">
+            <!-- Brand / Search Area -->
+            <div class="flex items-center gap-6 flex-1">
+                <span class="text-xl font-black text-blue-900 dark:text-white hidden md:block">FerreControl</span>
+                <div class="relative w-full max-w-md hidden md:block">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+                    <input
+                        class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded pl-10 pr-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent font-body-sm text-body-sm transition-colors duration-150"
+                        placeholder="Buscar por código SKU, producto o marca..." type="text" />
+                </div>
+
+            </div>
+            <!-- Actions -->
+            <div class="flex items-center gap-4">
+                <button
+                    class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-full transition-colors duration-150 flex items-center justify-center relative">
+                    <span class="material-symbols-outlined"
+                        style="font-variation-settings: 'FILL' 0;">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+                </button>
+                <button
+                    class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-full transition-colors duration-150 flex items-center justify-center hidden sm:flex">
+                    <span class="material-symbols-outlined"
+                        style="font-variation-settings: 'FILL' 0;">help_outline</span>
+                </button>
+                <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2 hidden sm:block"></div>
+                <button class="text-sm font-medium text-slate-600 hover:text-blue-900 transition-colors mr-4">
+                    Cerrar Sesión
+                </button>
+                <button
+                    class="flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 p-1 pr-3 rounded-full transition-colors duration-150 border border-transparent">
+                    <img alt="User Profile Avatar" class="w-8 h-8 rounded-full object-cover border border-slate-200"
+                        data-alt="headshot of a male hardware store manager with a friendly expression in a well lit environment"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeMFerkXfwlijKlQTtr_uCbBk-Cnea-2fwrYWAXwUX0oQ7VAL3IBay-tbEpMcU1r1laJkjB3GVxGam3biXhhxpI3iwLxh3NePvpy7HkgiSDy_PmMg4OTZPyIyl-GphkaPDfg2upqdDpU6R7d9i529Qi7TOzZth2sz8GEwWYwYRC-14skpt-xDf6ByE2fUIKuYI13-fvIytT5EcsjiJ8g0J1DcKVYpvN--r5Ljhqk0Lve7dXp8ajbDcQBWFOHxYQgs5Sqg8-c9OpVBb" />
+                    <span
+                        class="font-body-sm text-body-sm text-blue-900 dark:text-blue-400 hidden lg:block">Admin</span>
+                    <span
+                        class="material-symbols-outlined text-slate-500 text-[18px] hidden lg:block">expand_more</span>
+                </button>
+            </div>
+        </header>
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-container-padding flex flex-col gap-stack-gap-md">
+            <!-- Page Header & Global Actions -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
+                <div>
+                    <h1 class="font-h1 text-h1 text-on-background">Resumen Diario</h1>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Hoy: Martes, 24 de Octubre de 2023
+                    </p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="../inventory/inventory.html?action=add"
+                        class="bg-surface-container-lowest border border-primary-container text-primary-container hover:bg-surface-container-low py-2 px-4 rounded font-body-sm text-body-sm transition-colors flex items-center gap-2 shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">add_box</span>
+                        Añadir Producto
+                    </a>
+                    <button
+                        class="bg-secondary-container hover:bg-secondary text-on-secondary py-2 px-4 rounded font-body-sm text-body-sm transition-colors flex items-center gap-2 shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">shopping_cart_checkout</span>
+                        Nueva Venta
+                    </button>
+                </div>
+            </div>
+            <!-- Top KPIs Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- KPI Card 1: Ventas Hoy -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-2 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Ventas del Día (S/)</span>
+                        <div class="p-1.5 bg-surface-container-low text-primary-container rounded">
+                            <span class="material-symbols-outlined text-[20px]">payments</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span id="dash-sales-today" class="font-h1 text-h1 text-on-background">S/ 0.00</span>
+                    </div>
+                    <div id="dash-sales-growth" class="hidden items-center gap-1 mt-1">
+                        <span class="material-symbols-outlined text-[14px]"></span>
+                        <span class="font-label-caps text-label-caps"></span>
+                    </div>
+                </div>
+                <!-- KPI Card 2: Tickets -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-2 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Tickets Emitidos</span>
+                        <div class="p-1.5 bg-surface-container-low text-primary-container rounded">
+                            <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span id="dash-tickets-today" class="font-h1 text-h1 text-on-background">0</span>
+                    </div>
+                    <div class="flex items-center gap-1 mt-1 text-on-surface-variant">
+                        <span class="font-label-caps text-label-caps">Hoy</span>
+                    </div>
+                </div>
+                <!-- KPI Card 3: Ticket Promedio -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-2 shadow-sm">
+                    <div class="flex justify-between items-start">
+                        <span class="font-body-sm text-body-sm text-on-surface-variant">Ticket Promedio</span>
+                        <div class="p-1.5 bg-surface-container-low text-primary-container rounded">
+                            <span class="material-symbols-outlined text-[20px]">shopping_basket</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span id="dash-avg-ticket" class="font-h1 text-h1 text-on-background">S/ 0.00</span>
+                    </div>
+                    <div class="flex items-center gap-1 mt-1 text-on-surface-variant">
+                        <span class="material-symbols-outlined text-[14px]">horizontal_rule</span>
+                        <span class="font-label-caps text-label-caps">Estable</span>
+                    </div>
+                </div>
+                <!-- KPI Card 4: Alertas de Stock -->
+                <div id="dash-stock-alerts-card"
+                    class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 flex flex-col gap-2 shadow-sm transition-colors duration-300">
+                    <div class="flex justify-between items-start">
+                        <span class="font-body-sm text-body-sm text-on-error-container">Alertas de Stock</span>
+                        <div class="p-1.5 bg-white/50 text-on-error-container rounded">
+                            <span class="material-symbols-outlined text-[20px]">warning</span>
+                        </div>
+                    </div>
+                    <div class="flex items-baseline gap-2">
+                        <span id="dash-stock-alerts-count" class="font-h1 text-h1 text-on-error-container">0</span>
+                        <span class="font-body-sm text-body-sm text-on-error-container opacity-80">SKUs críticos</span>
+                    </div>
+                    <div class="flex items-center gap-1 mt-1 text-on-error-container">
+                        <span class="material-symbols-outlined text-[14px]">arrow_right_alt</span>
+                        <a class="font-label-caps text-label-caps underline hover:opacity-80" href="#low-stock">Ver
+                            detalle</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Layout Grid: Chart + Low Stock Table -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-gap-md h-full pb-4">
+                <!-- Weekly Performance Chart Panel (Takes 2 columns) -->
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant rounded-lg flex flex-col shadow-sm lg:col-span-2">
+                    <div class="px-5 py-4 border-b border-outline-variant flex justify-between items-center">
+                        <h2 class="font-h3 text-h3 text-on-background">Rendimiento Semanal (Soles)</h2>
+                        <button
+                            class="text-on-surface-variant hover:text-primary-container p-1 rounded transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">more_vert</span>
+                        </button>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col min-h-[350px] relative">
+                        <canvas id="dashWeeklyChart"></canvas>
+                    </div>
+                </div>
+                <!-- Low Stock Alerts Panel (Takes 1 column) -->
+                <div class="bg-surface-container-lowest border border-outline-variant rounded-lg flex flex-col shadow-sm"
+                    id="low-stock">
+                    <div
+                        class="px-5 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+                        <div class="flex items-center gap-2">
+                            <span
+                                class="material-symbols-outlined text-secondary-container text-[20px]">inventory</span>
+                            <h2 class="font-h3 text-h3 text-on-background">Alertas de Stock</h2>
+                        </div>
+                        <span id="dash-alerts-badge"
+                            class="bg-error-container text-on-error-container font-label-caps text-[10px] px-2 py-0.5 rounded-full">0
+                            ITEMS</span>
+                    </div>
+                    <div class="flex-1 overflow-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="sticky top-0 bg-surface-container-low border-b border-outline-variant z-10">
+                                <tr>
+                                    <th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant w-1/2">
+                                        Producto</th>
+                                    <th
+                                        class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant text-right">
+                                        Cant.</th>
+                                    <th
+                                        class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant text-center">
+                                        Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dash-stock-alerts-body" class="font-table-data text-table-data divide-y divide-outline-variant/50">
+                                <!-- Dynamic alerts -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="px-5 py-3 border-t border-outline-variant bg-surface-container-lowest">
+                        <button
+                            class="w-full py-1.5 flex justify-center items-center gap-1 text-primary-container font-body-sm text-body-sm hover:bg-surface-container-low rounded transition-colors">
+                            Ver reporte completo <span
+                                class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="../global.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

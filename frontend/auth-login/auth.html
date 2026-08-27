@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="light" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>FerreControl - Acceso</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00236f",
+                        "secondary": "#9d4300",
+                        "background": "#f8f9ff",
+                        "surface": "#ffffff",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#444651",
+                        "outline-variant": "#c5c5d3",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .auth-container {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        .slide-register .auth-container {
+            transform: translate3d(-50%, 0, 0);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background min-h-screen flex overflow-hidden">
+    <!-- Split Screen Layout -->
+    <div class="flex flex-1 w-full flex-col lg:flex-row">
+        
+        <!-- Left Side: Static Branding (Common) -->
+        <div class="relative hidden lg:flex flex-col w-5/12 bg-primary overflow-hidden border-r border-outline-variant">
+            <div class="absolute inset-0 z-0">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSmWD0zj4kPl9Cjqt4myKSvTwNR6ZdpQi9NGtx_4S7uljhFRD_x68_1YRPFxQHQQ6pVs4xwYeuqfPCYpzydHJR5jlgrVT43Nm5MOW4RB03mFYFiNGrIgK554nJQs96cIOnrKPqSIgrAb7S_vp2B_diYp2WwGLqYdzSaYgnSemg-KcfnuWE1N9R0piTgAOC24zztW_q6i_8cu3tT0OrWNxBvYjqr6ZtnycDMDx4Nn8iUBPA_BxitiM_vRUi_4BCZcV01OkzBJt24vCc" class="w-full h-full object-cover opacity-30 mix-blend-luminosity">
+                <div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/40"></div>
+            </div>
+            <div class="relative z-10 flex flex-col justify-between h-full p-12">
+                <div>
+                    <div class="flex items-center gap-3 text-on-primary text-white">
+                        <span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">precision_manufacturing</span>
+                        <span class="text-2xl font-bold tracking-tighter">FerreControl</span>
+                    </div>
+                </div>
+                <div class="max-w-md text-white">
+                    <h2 class="text-3xl font-bold mb-4">Precisión Industrial.</h2>
+                    <p class="text-blue-100 opacity-80">
+                        Gestión avanzada de inventarios, POS en tiempo real y facturación electrónica robusta para ferreterías de alto volumen.
+                    </p>
+                    <div class="mt-8 flex gap-4">
+                        <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded border border-white/20 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-sm">inventory_2</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider">Control de Stock</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded border border-white/20 backdrop-blur-sm">
+                            <span class="material-symbols-outlined text-sm">point_of_sale</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider">Venta Rápida</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side: Sliding Forms -->
+        <div id="main-wrapper" class="flex-1 relative overflow-hidden bg-white w-full">
+            <div class="auth-container relative flex w-[200%] h-full transition-transform duration-500 ease-in-out">
+                
+                <!-- LOGIN SLIDE -->
+                <div class="w-1/2 min-w-[50%] h-full flex flex-col justify-center px-8 lg:px-24 shrink-0">
+                    <div class="max-w-sm w-full mx-auto">
+                        <div class="mb-8">
+                            <a href="../landing/index.html" class="inline-flex items-center gap-1 text-primary hover:underline text-sm mb-4">
+                                <span class="material-symbols-outlined text-sm">arrow_back</span> Volver al Inicio
+                            </a>
+                            <h1 class="text-2xl font-bold text-on-surface">Iniciar Sesión</h1>
+                            <p class="text-sm text-on-surface-variant mt-2">Ingresa tus credenciales para acceder.</p>
+                        </div>
+
+                        <form id="loginForm" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-on-surface-variant uppercase mb-1">Usuario</label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-3 top-2 text-slate-400 text-lg">person</span>
+                                    <input type="text" id="login-username" required class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" placeholder="Usuario">
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <label class="block text-xs font-bold text-on-surface-variant uppercase">Contraseña</label>
+                                    <a href="#" class="text-xs text-primary hover:underline">¿Olvidaste tu clave?</a>
+                                </div>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-3 top-2 text-slate-400 text-lg">lock</span>
+                                    <input type="password" id="login-password" required class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" placeholder="••••••••">
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full bg-secondary text-white font-bold py-3 rounded-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                                Ingresar <span class="material-symbols-outlined">login</span>
+                            </button>
+                        </form>
+
+                        <div class="mt-8 text-center text-sm">
+                            ¿No tienes cuenta? <button onclick="toggleAuth(true)" class="text-primary font-bold hover:underline">Regístrate ahora</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REGISTER SLIDE -->
+                <div class="w-1/2 min-w-[50%] h-full flex flex-col justify-center px-8 lg:px-24 shrink-0">
+                    <div class="max-w-sm w-full mx-auto">
+                        <div class="mb-6">
+                            <h1 class="text-2xl font-bold text-on-surface">Crea tu Cuenta</h1>
+                            <p class="text-sm text-on-surface-variant mt-1">Registra tu ferretería en segundos.</p>
+                        </div>
+
+                        <form id="registerForm" class="space-y-3">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Empresa</label>
+                                    <input type="text" id="reg-company" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm" placeholder="Nombre">
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">RUC</label>
+                                    <input type="text" id="reg-ruc" required maxlength="11" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm" placeholder="RUC">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Administrador</label>
+                                <input type="text" id="reg-fullname" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm" placeholder="Nombre completo">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Usuario</label>
+                                <input type="text" id="reg-username" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm" placeholder="admin_user">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold text-on-surface-variant uppercase mb-1">Contraseña</label>
+                                <input type="password" id="reg-password" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm" placeholder="••••••••">
+                            </div>
+                            <button type="submit" class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:brightness-110 transition-all mt-2">
+                                Registrarse y Comenzar
+                            </button>
+                        </form>
+
+                        <div class="mt-6 text-center text-sm">
+                            ¿Ya tienes cuenta? <button onclick="toggleAuth(false)" class="text-primary font-bold hover:underline">Inicia Sesión</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAuth(isRegister) {
+            if (isRegister) {
+                document.body.classList.add('slide-register');
+                window.location.hash = 'register';
+            } else {
+                document.body.classList.remove('slide-register');
+                window.location.hash = 'login';
+            }
+        }
+
+        // Handle URL Hash
+        window.addEventListener('load', () => {
+            if (window.location.hash === '#register') toggleAuth(true);
+        });
+
+        // LOGIN LOGIC
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('login-username').value;
+            const password = document.getElementById('login-password').value;
+            
+            console.log('Intentando login para:', username);
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8081/api/v1/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                console.log('Respuesta del servidor (Login):', response.status);
+
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Login exitoso, guardando token...');
+                    localStorage.setItem('token', data.token);
+                    localStorage.setItem('username', data.username);
+                    localStorage.setItem('tenantName', data.tenantName);
+                    localStorage.setItem('role', data.role);
+                    localStorage.setItem('fullName', data.fullName);
+                    window.location.href = '../dashboard/dashboard.html';
+                } else {
+                    const errData = await response.json().catch(() => ({}));
+                    console.error('Error en Login:', errData);
+                    alert('Acceso denegado: ' + (errData.message || 'Credenciales incorrectas'));
+                }
+            } catch (err) {
+                console.error('Error de red en Login:', err);
+                alert('Error de conexión con el servidor.');
+            }
+        });
+
+        // REGISTER LOGIC
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                companyName: document.getElementById('reg-company').value,
+                ruc: document.getElementById('reg-ruc').value,
+                fullName: document.getElementById('reg-fullname').value,
+                username: document.getElementById('reg-username').value,
+                password: document.getElementById('reg-password').value
+            };
+
+            console.log('Intentando registro:', data);
+
+            try {
+                const response = await fetch('http://127.0.0.1:8081/api/v1/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                console.log('Respuesta del servidor (Registro):', response.status);
+
+                if (response.ok) {
+                    const resData = await response.json();
+                    console.log('Registro exitoso!');
+                    localStorage.setItem('token', resData.token);
+                    localStorage.setItem('username', resData.username);
+                    localStorage.setItem('tenantName', resData.tenantName);
+                    localStorage.setItem('role', resData.role);
+                    localStorage.setItem('fullName', resData.fullName);
+                    window.location.href = '../dashboard/dashboard.html';
+                } else {
+                    const errData = await response.json().catch(() => ({}));
+                    console.error('Error en Registro:', errData);
+                    alert('Error en el registro: ' + (errData.message || 'Datos inválidos o ya existentes'));
+                }
+            } catch (err) {
+                console.error('Error de red en Registro:', err);
+                alert('Error de conexión.');
+            }
+        });
+    </script>
+</body>
+</html>

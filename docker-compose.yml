@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ferrecontrol-db
+
+    environment:
+      MYSQL_DATABASE: ferrecontrol_db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: ferre_user
+      MYSQL_PASSWORD: ferre_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  backend:
+    image: maven:3.9.6-eclipse-temurin-17
+    container_name: ferrecontrol-backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+      - ~/.m2:/root/.m2
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/ferrecontrol_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    command: mvn spring-boot:run
+    depends_on:
+      - db
+
+  adminer:
+    image: adminer
+    container_name: ferrecontrol-adminer
+
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: nginx:alpine
+    container_name: ferrecontrol-frontend
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

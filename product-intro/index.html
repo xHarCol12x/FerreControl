@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Intro</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000000;
+      overflow: hidden;
+    }
+
+    #stage {
+      position: relative;
+      width: 1920px;
+      height: 1080px;
+    }
+
+    .scene-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 120px;
+    }
+
+    .title {
+      font-family: "Bebas Neue", Impact, sans-serif;
+      font-size: 180px;
+      font-weight: 700;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .tagline {
+      font-family: "Outfit", system-ui, sans-serif;
+      font-size: 32px;
+      font-weight: 300;
+      color: #E5E5E5;
+      margin-top: 24px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(252, 163, 17, 0.15) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+
+    .glow-1 {
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="stage" data-composition-id="product-intro" data-start="0" data-width="1920" data-height="1080">
+    <div class="glow glow-1"></div>
+    <div class="scene-content">
+      <div class="title">New Product</div>
+      <div class="tagline">Coming Soon</div>
+    </div>
+
+    <audio
+      id="bg-music"
+      data-start="0"
+      data-duration="10"
+      data-track-index="2"
+      data-volume="0.3"
+      src="music.mp3"
+    ></audio>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    window.__timelines = window.__timelines || {};
+
+    const tl = gsap.timeline({ paused: true });
+
+    tl.from(".glow", {
+      scale: 0.8,
+      opacity: 0,
+      duration: 1.5,
+      ease: "power2.out"
+    }, 0);
+
+    tl.from(".title", {
+      y: 60,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out"
+    }, 0.3);
+
+    tl.from(".tagline", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      ease: "power2.out"
+    }, 0.6);
+
+    tl.to(".title", {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.in"
+    }, 8.5);
+
+    tl.to(".tagline", {
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.in"
+    }, 8.7);
+
+    tl.to(".glow", {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.in"
+    }, 8.5);
+
+    window.__timelines["product-intro"] = tl;
+  </script>
+</body>
+</html>

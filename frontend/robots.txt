@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /auth-*/
+Disallow: /dashboard*
+Disallow: /pos*
+Disallow: /sales*
+Disallow: /inventory*
+Disallow: /customers*
+Disallow: /reports*
+Disallow: /settings*
+Disallow: /dashboard-expanded*
+
+Sitemap: https://ferrecontrol.com/sitemap.xml

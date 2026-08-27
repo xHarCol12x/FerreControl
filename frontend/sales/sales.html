@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>FerreControl - Historial de Ventas</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Sticky Header */
+        .sticky-header thead th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: #eff4ff;
+            /* surface-container-low */
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#d3e4fe",
+                        "on-tertiary-fixed-variant": "#773205",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-container": "#f39461",
+                        "surface": "#f8f9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#fd761a",
+                        "on-primary-container": "#90a8ff",
+                        "on-tertiary-fixed": "#341100",
+                        "tertiary": "#4b1c00",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-primary": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#9d4300",
+                        "outline-variant": "#c5c5d3",
+                        "primary": "#00236f",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#eff4ff",
+                        "surface-container": "#e5eeff",
+                        "on-surface": "#0b1c30",
+                        "secondary-fixed-dim": "#ffb690",
+                        "outline": "#757682",
+                        "on-surface-variant": "#444651",
+                        "on-secondary-container": "#5c2400",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#6e2c00",
+                        "surface-dim": "#cbdbf5",
+                        "on-background": "#0b1c30",
+                        "inverse-primary": "#b6c4ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#4059aa",
+                        "on-secondary-fixed-variant": "#783200",
+                        "on-error-container": "#93000a",
+                        "primary-fixed": "#dce1ff",
+                        "tertiary-fixed-dim": "#ffb691",
+                        "on-primary-fixed": "#00164e",
+                        "background": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-primary-fixed-variant": "#264191",
+                        "secondary-fixed": "#ffdbca",
+                        "inverse-on-surface": "#eaf1ff",
+                        "primary-container": "#1e3a8a",
+                        "on-secondary-fixed": "#341100",
+                        "inverse-surface": "#213145"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-gap-xs": "0.25rem",
+                        "table-row-height": "32px",
+                        "stack-gap-sm": "0.5rem",
+                        "unit": "4px",
+                        "stack-gap-md": "1rem",
+                        "container-padding": "1.5rem",
+                        "gutter": "1rem"
+                    },
+                    "fontFamily": {
+                        "table-data": ["Inter", "sans-serif"],
+                        "h1": ["Inter", "sans-serif"],
+                        "body-sm": ["Inter", "sans-serif"],
+                        "h2": ["Inter", "sans-serif"],
+                        "body-md": ["Inter", "sans-serif"],
+                        "h3": ["Inter", "sans-serif"],
+                        "label-caps": ["Inter", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "table-data": ["13px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "h1": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "h2": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "h3": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-background font-body-md text-body-md h-screen flex overflow-hidden">
+    <!-- SideNavBar -->
+    <nav
+        class="bg-slate-50 dark:bg-slate-950 font-sans text-xs uppercase tracking-wider font-semibold fixed left-0 top-0 h-full w-64 border-r border-r border-slate-200 dark:border-slate-800 flex flex-col h-full py-4 z-20">
+        <!-- Header Section -->
+        <div class="px-6 mb-8 flex flex-col items-start gap-stack-gap-sm">
+            <div class="flex items-center gap-2 w-full">
+                <img alt="Store Logo" class="w-10 h-10 rounded-full object-cover border border-outline-variant"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKsH_cKK9gO0W1npxc8MDWLzy1zsyIIp7WH2vLKHgPsCbYutxu0cePn4aK26YFFP1E7c5KrH6PeAVkHh0bj7Y0mQ9gfqmcoe2xXv55R1Zt05CCGAs4lykLvaYzFUAQHOH9utPTOsVFys4-2XkJxrYMcRGjIHGCmS8jPJJgs8JT_Maf4xhRRaqoJ6Sm1lR8g54MrKd-fGME8bPveJeJcVWqH_Mitc75V1GDK693ppV1NB8vAJypTfxjlZFLV7u48jHNY2nFaR9nhOkq" />
+                <div class="flex flex-col">
+                    <span class="text-on-background font-bold text-sm leading-tight capitalize">Ferretería
+                        Central</span>
+                    <span class="text-slate-500 text-[10px] lowercase">Tenant ID: 0822</span>
+                </div>
+            </div>
+            <!-- CTA Button -->
+            <button onclick="window.location.href='../pos/pos.html'"
+                class="w-full mt-4 bg-secondary-container hover:bg-secondary text-on-secondary py-2 px-4 rounded transition-colors duration-200 flex items-center justify-center gap-2 shadow-sm font-label-caps text-label-caps">
+                <span class="material-symbols-outlined text-[18px]">add_circle</span>
+                Nueva Venta
+            </button>
+        </div>
+        <!-- Navigation Links -->
+        <div class="flex-1 overflow-y-auto w-full flex flex-col gap-1">
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../dashboard/dashboard.html">
+                <span class="material-symbols-outlined text-[20px]">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../pos/pos.html">
+                <span class="material-symbols-outlined text-[20px]">point_of_sale</span>
+                <span>Punto de Venta</span>
+            </a>
+            <a class="text-orange-600 dark:text-orange-400 border-r-4 border-orange-600 bg-orange-50 dark:bg-orange-900/20 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../sales/sales.html">
+                <span class="material-symbols-outlined text-[20px]">receipt_long</span>
+                <span>Ventas</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../inventory/inventory.html">
+                <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+                <span>Inventario</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../customers/customers.html">
+                <span class="material-symbols-outlined text-[20px]">group</span>
+                <span>Clientes</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../reports/reports.html">
+                <span class="material-symbols-outlined text-[20px]">analytics</span>
+                <span>Reportes</span>
+            </a>
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../settings/settings.html">
+                <span class="material-symbols-outlined text-[20px]">settings</span>
+                <span>Configuración</span>
+            </a>
+        </div>
+        <!-- Footer Links -->
+        <div class="mt-auto pt-4 border-t border-slate-200 dark:border-slate-800 w-full flex flex-col gap-1">
+            <a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 flex items-center gap-3 px-6 py-3 transition-all duration-200 ease-in-out"
+                href="../auth-login/login.html">
+                <span class="material-symbols-outlined text-[20px]">logout</span>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+    </nav>
+    <!-- Main Canvas -->
+    <main class="flex-1 ml-64 flex flex-col h-full bg-background relative z-10">
+        <!-- TopAppBar -->
+        <header
+            class="bg-white dark:bg-slate-900 font-sans text-sm font-medium docked full-width top-0 border-b border-b border-slate-200 dark:border-slate-800 flex justify-between items-center px-6 py-2 w-full shrink-0 h-[60px]">
+            <div class="flex items-center gap-6 flex-1">
+                <span class="text-xl font-black text-blue-900 dark:text-white hidden md:block">FerreControl</span>
+                <div class="relative w-full max-md:hidden max-w-md">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+                    <input id="sales-search"
+                        class="w-full bg-surface-container-low border border-outline-variant text-on-surface rounded pl-10 pr-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent font-body-sm text-body-sm transition-colors duration-150"
+                        placeholder="Buscar por número de comprobante o cliente..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 p-2 rounded-full transition-colors duration-150 flex items-center justify-center relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full"></span>
+                </button>
+                <div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2 hidden sm:block"></div>
+                <button
+                    class="flex items-center gap-2 hover:bg-slate-50 dark:hover:bg-slate-800 p-1 pr-3 rounded-full transition-colors duration-150 border border-transparent">
+                    <img alt="User" class="w-8 h-8 rounded-full object-cover border border-slate-200"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCeMFerkXfwlijKlQTtr_uCbBk-Cnea-2fwrYWAXwUX0oQ7VAL3IBay-tbEpMcU1r1laJkjB3GVxGam3biXhhxpI3iwLxh3NePvpy7HkgiSDy_PmMg4OTZPyIyl-GphkaPDfg2upqdDpU6R7d9i529Qi7TOzZth2sz8GEwWYwYRC-14skpt-xDf6ByE2fUIKuYI13-fvIytT5EcsjiJ8g0J1DcKVYpvN--r5Ljhqk0Lve7dXp8ajbDcQBWFOHxYQgs5Sqg8-c9OpVBb" />
+                    <span
+                        class="font-body-sm text-body-sm text-blue-900 dark:text-blue-400 hidden lg:block">Admin</span>
+                </button>
+            </div>
+        </header>
+        <!-- Content Area -->
+        <div class="flex-1 overflow-y-auto p-container-padding flex flex-col gap-stack-gap-md">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-2">
+                <div>
+                    <h1 class="font-h1 text-h1 text-on-background">Historial de Ventas</h1>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Consulta y gestiona todos los
+                        comprobantes emitidos.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button id="export-btn"
+                        class="bg-surface-container-lowest border border-outline-variant text-on-surface hover:bg-surface-container-low py-2 px-4 rounded font-body-sm text-body-sm transition-colors flex items-center gap-2 shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">download</span>
+                        Exportar
+                    </button>
+                    <button onclick="window.location.href='../pos/pos.html'"
+                        class="bg-secondary-container hover:bg-secondary text-on-secondary py-2 px-4 rounded font-body-sm text-body-sm transition-colors flex items-center gap-2 shadow-sm">
+                        <span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+                        Nueva Venta
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-2">
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg border border-outline-variant shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Ventas Hoy</p>
+                    <p id="stats-today-count" class="text-2xl font-bold text-primary">0</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg border border-outline-variant shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Total Hoy</p>
+                    <p id="stats-today-amount" class="text-2xl font-bold text-green-600">S/ 0.00</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg border border-outline-variant shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Ventas Mes</p>
+                    <p id="stats-month-count" class="text-2xl font-bold text-blue-900">0</p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 p-4 rounded-lg border border-outline-variant shadow-sm">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Total Mes</p>
+                    <p id="stats-month-amount" class="text-2xl font-bold text-secondary-container">S/ 0.00</p>
+                </div>
+            </div>
+
+            <!-- Main Content: Table -->
+            <div
+                class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden shadow-sm flex-1 min-h-0 flex flex-col">
+                <div class="overflow-y-auto max-h-[calc(100vh-340px)]">
+                    <table class="w-full text-left border-collapse whitespace-nowrap sticky-header">
+                        <thead class="bg-surface-container-low border-b border-outline-variant">
+                            <tr>
+                                <th
+                                    class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+                                    Fecha / Hora</th>
+                                <th
+                                    class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+                                    Número</th>
+                                <th
+                                    class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+                                    Cliente</th>
+                                <th
+                                    class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">
+                                    Método</th>
+                                <th
+                                    class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-right">
+                                    Total</th>
+                                <th
+                                    class="px-6 py-3 font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider text-center">
+                                    Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sales-table-body" class="font-table-data text-table-data text-on-surface">
+                            <!-- JS injects rows here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    <!-- Sale Detail Modal -->
+    <div id="sale-detail-modal" class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-surface-container-lowest w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden border border-outline-variant animate-in fade-in zoom-in duration-300">
+            <div class="px-6 py-5 border-b border-outline-variant flex justify-between items-center bg-primary text-white">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[24px]">receipt_long</span>
+                    <h3 class="font-h3 text-h3">Detalle de Venta: <span id="detail-invoice" class="font-mono">...</span></h3>
+                </div>
+                <button onclick="closeDetailModal()" class="text-white/80 hover:text-white transition-colors bg-white/10 p-1.5 rounded-full">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-8">
+                <div class="grid grid-cols-2 gap-8 mb-8 bg-surface-container-low p-5 rounded-xl border border-outline-variant">
+                    <div>
+                        <p class="text-[10px] font-black text-outline uppercase tracking-widest mb-1">Cliente</p>
+                        <p id="detail-customer" class="text-sm font-bold text-on-surface">...</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] font-black text-outline uppercase tracking-widest mb-1">Fecha / Hora</p>
+                        <p id="detail-date" class="text-sm font-bold text-on-surface">...</p>
+                    </div>
+                </div>
+                <div class="border border-outline-variant rounded-xl overflow-hidden mb-8 shadow-sm">
+                    <table class="w-full text-sm">
+                        <thead class="bg-surface-container-high text-on-surface-variant font-bold">
+                            <tr>
+                                <th class="px-6 py-3 text-left uppercase text-[10px] tracking-widest">Producto</th>
+                                <th class="px-6 py-3 text-center uppercase text-[10px] tracking-widest">Cant.</th>
+                                <th class="px-6 py-3 text-right uppercase text-[10px] tracking-widest">P. Unit</th>
+                                <th class="px-6 py-3 text-right uppercase text-[10px] tracking-widest">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="detail-items-body" class="divide-y divide-outline-variant text-on-surface">
+                            <!-- JS injects items here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex justify-between items-center bg-surface-bright p-5 rounded-xl border border-primary/10">
+                    <span class="text-xs font-black text-primary uppercase tracking-[0.2em]">Importe Total</span>
+                    <div class="flex items-baseline gap-1">
+                        <span class="text-sm font-bold text-primary">S/</span>
+                        <span id="detail-total" class="text-3xl font-black text-primary tracking-tighter">0.00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="px-8 py-5 bg-surface-container border-t border-outline-variant flex justify-end gap-4">
+                <button
+                    class="px-6 py-3 bg-white border-2 border-outline-variant rounded-xl text-xs font-black uppercase tracking-widest flex items-center gap-2 hover:bg-slate-50 transition-all text-on-surface-variant shadow-sm">
+                    <span class="material-symbols-outlined text-[18px]">print</span>
+                    Re-imprimir
+                </button>
+                <button onclick="closeDetailModal()"
+                    class="px-8 py-3 bg-primary text-white rounded-xl text-xs font-black uppercase tracking-widest hover:opacity-90 transition-all shadow-lg shadow-primary/20">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../global.js"></script>
+    <script src="sales.js"></script>
+</body>
+
+</html>
